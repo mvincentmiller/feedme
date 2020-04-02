@@ -1,2 +1,2 @@
 # feedme
-Content aggrigation and tech stack demo
+Content aggregation and tech stack demo
