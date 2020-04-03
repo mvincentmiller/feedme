@@ -4,8 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "graphile-build-pg": "^4.5.3",
     "pg": "^8.0.0",
     "pg-hstore": "^2.3.3",
+    "postgraphile": "^4.6.0",
     "sequelize": "^5.21.5"
   }
 }
