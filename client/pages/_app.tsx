@@ -1,5 +1,5 @@
 import App from 'next/app'
-import { CounterProvider } from '../components/Counter'
+import { StoreProvider } from '../components/Store'
 
 
 
@@ -8,9 +8,9 @@ class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props
     return (
-      <CounterProvider>
+      <StoreProvider>
         <Component {...pageProps} />
-      </CounterProvider>
+      </StoreProvider>
     )
   }
 }

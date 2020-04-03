@@ -27,7 +27,7 @@ const reducer = (state, action) => {
   }
 }
 
-export const CounterProvider = ({ children }) => {
+export const StoreProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, 0)
   return (
     <ApolloProvider client={client}>    

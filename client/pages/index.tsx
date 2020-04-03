@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { useCount, useDispatchCount } from '../components/Counter'
+import { useCount, useDispatchCount } from '../components/Store'
 
 
 export default () => {
