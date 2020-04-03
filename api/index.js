@@ -1,22 +1,5 @@
-// const Sequelize = require('sequelize');
-// const sequelize = new Sequelize('queue_database', 'queue', 'queue', {
-//   host: 'localhost',
-//   dialect: 'postgres',
-//   pool: {
-//     max: 9,
-//     min: 0,
-//     idle: 10000
-//   }
-// });
-
-// sequelize.authenticate().then(() => {
-//   console.log("Success!");
-// }).catch((err) => {
-//   console.log(err);
-// });
-
-const Koa = require('koa');
-const { ApolloServer, gql } = require('apollo-server-koa');
+const { ApolloServer, gql } = require("apollo-server");
+const ApolloServerLambda = require('apollo-server-lambda').ApolloServer;
 const order = require('./models/order');
 const {resolver} = require('graphql-sequelize');
 
@@ -53,11 +36,30 @@ const resolvers = {
   },
 };
  
-const server = new ApolloServer({ typeDefs, resolvers });
- 
-const app = new Koa();
-server.applyMiddleware({ app });
- 
-app.listen({ port: 4000 }, () =>
-  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`),
-);
+const server = new ApolloServerLambda({
+  typeDefs,
+  resolvers,
+  context: ({ event, context }) => ({
+      headers: event.headers,
+      functionName: context.functionName,
+      event,
+      context,
+  }),
+});
+
+exports.handler = server.createHandler({
+  cors: {
+      origin: '*',
+      credentials: true,
+      allowedHeaders: 'Content-Type, Authorization'
+  },
+});
+
+// For local development
+if( process.env.LAMBDA_LOCAL_DEVELOPMENT == "1") {
+  const serverLocal = new ApolloServer({ typeDefs, resolvers });
+
+  serverLocal.listen().then(({ url }) => {
+      console.log(`🚀 Server ready at ${url}`);
+  });
+}
