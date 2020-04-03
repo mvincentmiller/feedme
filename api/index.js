@@ -17,18 +17,39 @@
 
 const Koa = require('koa');
 const { ApolloServer, gql } = require('apollo-server-koa');
- 
+const order = require('./models/order');
+const {resolver} = require('graphql-sequelize');
+
 // Construct a schema, using GraphQL schema language
 const typeDefs = gql`
   type Query {
-    hello: String
+    order(order_id: ID!): Order
+    orders: [Order]
+  }
+  
+  type Order {
+    order_id: ID
+    customer_id: String,
+    employee_id: Int,
+    order_date: String,
+    required_date: String,
+    shipped_date: String,
+    ship_via: Int,
+    freight: Float,
+    ship_name: String,
+    ship_address: String,
+    ship_city: String,
+    ship_region: String,
+    ship_postal_code: String,
+    ship_country: String,
   }
 `;
  
 // Provide resolver functions for your schema fields
 const resolvers = {
   Query: {
-    hello: () => 'Hello world!',
+    order: resolver(order),
+    orders: resolver(order,{list: true})
   },
 };
  
