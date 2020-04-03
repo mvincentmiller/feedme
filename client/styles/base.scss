@@ -1,0 +1,11 @@
+@import "../node_modules/bulma/bulma.sass";
+
+$dark: #171717;
+$light: #fefefe;
+
+html {
+    font-family: 'Open Sans', sans-serif;
+    padding: 1em;
+    background: $dark;
+    color: $light; 
+}

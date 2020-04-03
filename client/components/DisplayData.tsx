@@ -1,13 +1,15 @@
 import { useQuery } from '@apollo/client';
 import { ORDERS } from '../gql'
 
-export const DisplayData = () => {
+export const DisplayData = (props: any) => {
+  
+  if (props.stuff !== 'orders') return <p>We cannot complete your request.</p>
+else {
   const { loading, error, data } = useQuery(ORDERS);
-
+  
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
-  if (data) {console.log(data)}  
   return data.orders.map(({ ship_city, ship_country }) => (
     <div key={ship_city}>
       <p>
@@ -15,4 +17,5 @@ export const DisplayData = () => {
       </p>
     </div>
   ));
+ }
 }

@@ -3,36 +3,26 @@ import Link from 'next/link'
 import { useCount, useDispatchCount } from '../components/Store'
 import { DisplayData } from '../components/DisplayData'
 import { useRouter } from 'next/router'
+import {handleIncrease, handleDecrease} from '../actions'
 
 
 const AboutPage = () => {
   const count = useCount()
   const dispatch = useDispatchCount()
   const router = useRouter()
-	console.log(router.query)
-
-  const handleIncrease = event =>
-    dispatch({
-      type: 'INCREASE',
-    })
-  const handleIncrease15 = event =>
-    dispatch({
-      type: 'INCREASE_BY',
-      payload: 15,
-    })
 
   return (
     <>
       <h1>Stuff</h1>
-      <p>what kind of stuff? {router.query.stuff}</p>
+      <p>What kind of stuff? {router.query.stuff || 'Nope, none of the things...'}</p>
       <p>Counter: {count}</p>
-      <button onClick={handleIncrease}>Increase</button>
-      <button onClick={handleIncrease15}>Increase By 15</button>
+      <button onClick={(e) => handleIncrease(e, dispatch)}>+</button>
+      <button onClick={(e) => handleDecrease(e, dispatch)}>-</button>
       <p>
         <Link href="/">
           <a>Home</a>
         </Link>
-        <DisplayData/>
+        <DisplayData stuff={router.query.stuff}/>
       </p>
     </>
   )
