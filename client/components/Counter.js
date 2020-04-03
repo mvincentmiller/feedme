@@ -1,7 +1,7 @@
 import React, { useReducer, useContext } from 'react'
 import fetch from 'node-fetch';
 import { ApolloClient, HttpLink, InMemoryCache, ApolloProvider } from '@apollo/client';
-import { gql } from '@apollo/client';
+
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
@@ -10,31 +10,6 @@ const client = new ApolloClient({
   })
 });
 
-
-// client
-//   .query({
-//     query: gql`
-//       {
-//   orders {
-//     order_id
-//     customer_id
-//     employee_id
-//     order_date
-//     required_date
-//     shipped_date
-//     ship_via
-//     freight
-//     ship_name
-//     ship_address
-//     ship_city
-//     ship_region
-//     ship_postal_code
-//     ship_country
-//   }
-// }
-//     `
-//   })
-//   .then(result => console.log(result));
 
 const CounterStateContext = React.createContext()
 const CounterDispatchContext = React.createContext()

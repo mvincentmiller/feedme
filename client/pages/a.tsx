@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { useCount, useDispatchCount } from '../components/Counter'
+import { DisplayData } from '../components/DisplayData'
 import { useRouter } from 'next/router'
 
 
@@ -22,7 +23,8 @@ const AboutPage = () => {
 
   return (
     <>
-      <h1>ABOUT</h1>
+      <h1>Stuff</h1>
+      <p>what kind of stuff? {router.query.stuff}</p>
       <p>Counter: {count}</p>
       <button onClick={handleIncrease}>Increase</button>
       <button onClick={handleIncrease15}>Increase By 15</button>
@@ -30,6 +32,7 @@ const AboutPage = () => {
         <Link href="/">
           <a>Home</a>
         </Link>
+        <DisplayData/>
       </p>
     </>
   )
