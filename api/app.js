@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('queue', 'postgres', 'queue', {
+const sequelize = new Sequelize('queue_database', 'queue', 'queue', {
   host: 'localhost',
   dialect: 'postgres',
   pool: {
