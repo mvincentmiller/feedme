@@ -4,13 +4,13 @@ import Link from 'next/link'
 export default () => (
   <ul>
     <li>
-      <Link href="/b" as="/a">
+      <Link href="/a">
         <a>a</a>
       </Link>
     </li>
     <li>
-      <Link href="/a" as="/b">
-        <a>b</a>
+	    <Link href="/a?stuff=things" as="/a">
+        <a>a?stuff</a>
       </Link>
     </li>
   </ul>
