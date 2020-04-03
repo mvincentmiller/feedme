@@ -1,10 +1,27 @@
-# docker-compose.yml
-version: '3'
-services:
-  database:
-    image: "postgres" # use latest official postgres version
-    env_file:
-      - database.env # configure postgres
-    ports:
-      - 5432:5432/tcp 
+# # docker-compose.yml
+# version: '3'
+# services:
+#   database:
+#     image: "postgres" # use latest official postgres version
+#     env_file:
+#       - database.env # configure postgres
+#     ports:
+#       - 5432:5432/tcp 
+#     volumes:
+#       - ./dbdata:/var/lib/postgresql/data
+#       - ./northwind.sql:/docker-entrypoint-initdb.d/northwind.sql
 
+version: '3'
+
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: queue_database
+      POSTGRES_USER: queue
+      POSTGRES_PASSWORD: queue
+    ports:
+      - 5432:5432/tcp   
+    volumes:
+      - ./dbdata:/var/lib/postgresql/data
+      - ./northwind.sql:/docker-entrypoint-initdb.d/northwind.sql

@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../initializeDb');const order = sequelize.define('Order', {
+const sequelize = require('../initializeDb');
+const order = sequelize.define('Order', {
   order_id: {
     type: Sequelize.STRING,
     primaryKey: true,
