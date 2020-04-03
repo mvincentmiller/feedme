@@ -10,16 +10,12 @@ const handle = app.getRequestHandler()
 app.prepare().then(() => {
   const server = new Koa()
   const router = new Router()
+  
+  router.get('/:title/:id',  async ctx => {
+	  console.log(ctx.params)
+	  await app.render(ctx.req, ctx.res, ctx.params.title, ctx.params.id);
+		});
 
-  router.get('/a', async ctx => {
-    await app.render(ctx.req, ctx.res, '/a', ctx.query)
-    ctx.respond = false
-  })
-
-  router.get('/b', async ctx => {
-    await app.render(ctx.req, ctx.res, '/b', ctx.query)
-    ctx.respond = false
-  })
 
   router.all('*', async ctx => {
     await handle(ctx.req, ctx.res)
