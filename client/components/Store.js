@@ -1,6 +1,6 @@
 import React, { useReducer, useContext } from 'react'
 import fetch from 'node-fetch';
-import { ApolloClient, createHttpLink, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { ApolloClient, HttpLink, createHttpLink, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { setContext } from "apollo-link-context";
 
 // const client = new ApolloClient({
@@ -17,7 +17,7 @@ const httpLink = createHttpLink({
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('slinky');
   // return the headers to the context so httpLink can read them
   return {
     headers: {

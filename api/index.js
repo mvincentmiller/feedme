@@ -57,7 +57,26 @@ exports.handler = server.createHandler({
 
 // For local development
 if( process.env.LAMBDA_LOCAL_DEVELOPMENT == "1") {
-  const serverLocal = new ApolloServer({ typeDefs, resolvers });
+  const serverLocal = new ApolloServer({ 
+    typeDefs, 
+    resolvers, 
+    context: ({ req }) => {
+      console.log('req')
+      // get the user token from the headers
+      const token = req.headers.authorization || '';
+      console.log('token?', token)
+      // try to retrieve a user with the token
+      const user = getUser(token);
+      console.log('user?', user)
+      // optionally block the user
+      // we could also check user roles/permissions here
+      if (!user) throw new AuthenticationError('you must be logged in'); 
+     
+      // add the user to the context
+      return { user };
+     },
+  
+  });
 
   serverLocal.listen().then(({ url }) => {
       console.log(`🚀 Server ready at ${url}`);
