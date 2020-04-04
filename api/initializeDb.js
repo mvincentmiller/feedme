@@ -6,6 +6,6 @@ const username = process.env.POSTGRES_USER
 const password = process.env.POSTGRES_PASSWORD
 const dbname = process.env.POSTGRES_DB
 
-console.log(dbname)
+console.log(username)
 
 const sequelize = new Sequelize(`postgres://${username}:${password}@0.0.0.0:5432/${dbname}`);module.exports = sequelize;

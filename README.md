@@ -6,6 +6,9 @@ Content aggregation and tech stack demo
 ### Database
 Postgres in Docker. On first load the database will populate with `northwind.sql`.
 
+Install Sequelize CLI:
+`npm i -g sequelize`
+
 ```
 cd api
 docker-compose up

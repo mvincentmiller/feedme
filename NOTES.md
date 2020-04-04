@@ -2,6 +2,8 @@
 
 ## Tech Stack
 
+*At the time of writing, there are some newer things here: Server Side Rendering, Apollo-Client 3.0 Beta...*
+
 - Next.js
 - Koa
 - TypeScript
@@ -12,9 +14,7 @@
 
 *and notes in-progress*
 
-### Boilerplate & Idea
-
-*this has deviated significantly*
+*kind of started here...*
 
 - https://github.com/jaygould/nextjs-typescript-jwt-boilerplate
 - https://www.jaygould.co.uk/2019-04-04-nextjs-typescript-jwt-postgres-starter/
@@ -36,6 +36,7 @@
 
  - https://medium.com/@leonyapkl/how-to-run-graphql-api-server-with-postgresql-under-30-minutes-1732304cb825
  - https://github.com/pthom/northwind_psql
+ - https://blog.pusher.com/handling-authentication-in-graphql-jwt/
 
 
 ### Demo query
