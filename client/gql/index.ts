@@ -1,22 +1,27 @@
 import { gql } from '@apollo/client';
 
+
 export const ORDERS = gql`
-{
-  orders {
-    order_id
-    customer_id
-    employee_id
-    order_date
-    required_date
-    shipped_date
-    ship_via
-    freight
-    ship_name
-    ship_address
-    ship_city
-    ship_region
-    ship_postal_code
-    ship_country
+  query {
+    users
   }
-}
+`
+
+
+// export const LOGIN = gql`
+//   mutation login($email: String!, $password: String!) {
+//     login(email: $email, password: $password)
+//   }
+
+
+export const LOGIN = gql`
+    mutation {
+      login(email: "johndoe@example.com", password: "password")
+    }   
+`
+
+export const SIGNUP = gql`
+ mutation {
+      signup (username: "johndoe", email: "johndoe@example.com", password: "password")
+    }
 `

@@ -4,26 +4,29 @@ import Authenticate from "../components/Authenticate";
 import DisplayToken from "../components/DisplayToken";
 import {set_token} from '../actions'
 import { useDispatchAuth } from '../components/Store'
-
+import { useToken } from '../components/Store'
 
 export default () => {
   const auth_dispatch = useDispatchAuth()
 
+  const token = useToken()
+
   React.useEffect(() => {
     const token = localStorage.getItem('slinky')
-    console.log(token)
     set_token(auth_dispatch, token)
     return () => {
-      console.log('ok')
+      console.log('Index.')
     };
   }, []);
   
 
   return (
     <div className="section">
-      <DisplayToken />
-      <Authenticate />
-      <ul>
+   {!token && <Authenticate /> }
+  {token && <div>
+    <DisplayToken /> 
+    
+    <ul>
         <li>
           <Link href="/stuff" as="/nothinghereandmasked">
             <a className="button">Load DisplayData but don't load anything.</a>
@@ -37,6 +40,10 @@ export default () => {
           </Link>
         </li>
       </ul>
+      </div>
+    
+    }
+     
 
       <style jsx>{`
         .button {

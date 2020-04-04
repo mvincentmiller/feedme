@@ -6,6 +6,8 @@ const bcrypt = require('bcrypt')
 const jsonwebtoken = require('jsonwebtoken')
 require('dotenv').config()
 
+
+
  // Define our schema using the GraphQL schema language
  const typeDefs = `
  type User {
@@ -13,11 +15,10 @@ require('dotenv').config()
    username: String!
    email: String!
  }
-
  type Query {
    me: User
- }
-
+   users: [User!]
+  }
  type Mutation {
    signup (username: String!, email: String!, password: String!): String
    login (email: String!, password: String!): String
@@ -26,6 +27,7 @@ require('dotenv').config()
 
 const resolvers = {
   Query: {
+    users: () => users,
     // fetch the profile of currently authenticated user
     async me (_, args, { user }) {
       // make sure user is logged in
@@ -120,7 +122,7 @@ if( process.env.LAMBDA_LOCAL_DEVELOPMENT == "1") {
   //     return { user };
   //    },
   
-  // });
+   });
 
   serverLocal.listen().then(({ url }) => {
       console.log(`🚀 Server ready at ${url}`);

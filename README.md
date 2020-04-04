@@ -4,18 +4,30 @@ Content aggregation and tech stack demo
 ## API
 
 ### Database
-Postgres in Docker. On first load the database will populate with `northwind.sql`.
 
-Install Sequelize CLI:
-`npm i -g sequelize`
+Spin up Postgres in Docker. 
 
 ```
 cd api
 docker-compose up
+
+# access Postgres shell
+docker-compose exec db psql -U queue -d queue_database
 ```
 
-### Apollo-Server-Lambda
-Sequelize ORM connects to our local Postgres instance.
+Install Sequelize CLI:
+`npm i -g sequelize`
+
+Generate User model:
+`sequelize model:generate --name User --attributes username:string,email:string,password:string`
+
+Initialize:
+`sequelize init`
+
+Migrate:
+`sequelize db:migrate`
+
+Start Apollo Server:
 
 ```
 cd api
