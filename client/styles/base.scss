@@ -1,7 +1,7 @@
 @import "../node_modules/bulma/bulma.sass";
 
 $dark: #171717;
-$light: #fefefe;
+$light: #f7f7f7;
 
 html {
     font-family: 'Open Sans', sans-serif;
@@ -9,3 +9,9 @@ html {
     background: $dark;
     color: $light; 
 }
+
+
+.box {
+    border-radius: 0 !important;
+}
+

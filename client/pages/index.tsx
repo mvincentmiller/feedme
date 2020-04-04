@@ -1,7 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
 import { useCount, useDispatchCount } from '../components/Store'
-import {handleIncrease, handleDecrease} from '../actions'
+import IncDec from '../components/IncDec'
+import DisplayCounter from '../components/DisplayCounter'
+
 
 export default () => {
 
@@ -9,24 +11,33 @@ export default () => {
   const dispatch = useDispatchCount()
 
  return (
-  <div>
-  <h1>Home</h1>
+  <div className="section">
+ <DisplayCounter/>
+<IncDec/>
  
-  <p>Counter: {count}</p>
-  <button onClick={(e) => handleIncrease(e, dispatch)}>+</button>
-      <button onClick={(e) => handleDecrease(e, dispatch)}>-</button>
-
-   <ul>
+ <ul>
     <li>
       <Link href="/stuff" as="/nothinghereandmasked">
-        <a>Load DisplayData but don't load anything.</a>
+        <a className="button">Load DisplayData but don't load anything.</a>
       </Link>
     </li>
     <li>
 	    <Link href="/stuff?stuff=orders">
-        <a>DisplayData with a query parameter 'orders'</a>
+        <a className="button">DisplayData with a query parameter 'orders'</a>
       </Link>
     </li>
   </ul>
+
+
+      
+<style jsx>{`
+        .button {
+          margin: .5em;
+          min-width: 2em;
+      }
+      `}</style>
+ 
   </div>
+  
 )}
+

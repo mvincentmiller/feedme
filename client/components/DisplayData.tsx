@@ -11,10 +11,12 @@ else {
   if (error) return <p>Error :(</p>;
 
   return data.orders.map(({ ship_city, ship_country }) => (
+    <div className="box">
     <div key={ship_city}>
       <p>
         {ship_city}, {ship_country}
       </p>
+    </div>
     </div>
   ));
  }
