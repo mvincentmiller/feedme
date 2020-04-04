@@ -1,10 +1,7 @@
 
-export const handleIncrease = (event, dispatch) =>
-dispatch({
-  type: 'INCREASE',
-})
-
-export const handleDecrease = (event, dispatch) =>
-dispatch({
-  type: 'DECREASE',
-})
+export const set_token = async (dispatch, token) => {
+   await dispatch({
+        type: 'SET_TOKEN',
+        payload: token
+      }) 
+}

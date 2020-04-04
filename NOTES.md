@@ -60,3 +60,7 @@
   }
 }
 ```
+
+### useReducer
+*Bwhahahahaha*
+https://gist.github.com/astoilkov/013c513e33fe95fa8846348038d8fe42

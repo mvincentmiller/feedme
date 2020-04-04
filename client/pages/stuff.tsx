@@ -3,8 +3,7 @@ import Link from 'next/link'
 
 import { DisplayData } from '../components/DisplayData'
 import { useRouter } from 'next/router'
-import IncDec from '../components/IncDec'
-import DisplayCounter from '../components/DisplayCounter'
+import DisplayToken from '../components/DisplayToken'
 
 const AboutPage = () => {
    
@@ -12,21 +11,17 @@ const AboutPage = () => {
 
   return (
     <div className="columns">
-      <div className="column">
-
+      <div id="info" className="column">
       <div className="box">
       <p>What kind of stuff?</p> 
       <p>{router.query.stuff || 'Nope, none of the things...'}</p>
      </div>
-     <DisplayCounter/>
-        <IncDec/> 
+     <DisplayToken/>
         <p>
         <Link href="/">
           <a className="button">Home</a>
         </Link>
         </p>
-
-      
         </div>
         <div className="column">
         <div className="section">

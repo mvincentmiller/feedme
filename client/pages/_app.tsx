@@ -4,7 +4,6 @@ import { StoreProvider } from '../components/Store'
 
 
 
-
 class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props
