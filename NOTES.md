@@ -33,6 +33,7 @@
  - https://medium.com/@leonyapkl/how-to-run-graphql-api-server-with-postgresql-under-30-minutes-1732304cb825
  - https://github.com/pthom/northwind_psql
  - https://sequelize.org/master/manual/migrations.html
+ - https://stackoverflow.com/questions/34120548/using-bcrypt-with-sequelize-model
  - https://medium.com/@leonyapkl/how-to-make-graphql-schema-and-sequelize-fields-works-together-dont-repeat-yourself-dry-18fbfc5b5aac
 
 

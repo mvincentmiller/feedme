@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { DisplayData } from '../components/DisplayData'
 import { useRouter } from 'next/router'
 import DisplayToken from '../components/DisplayToken'
+import CreateUser from '../components/CreateUser'
 
 const AboutPage = () => {
    
@@ -22,6 +23,9 @@ const AboutPage = () => {
           <a className="button">Home</a>
         </Link>
         </p>
+<div>
+  <CreateUser/>
+</div>
         </div>
         <div className="column">
         <div className="section">

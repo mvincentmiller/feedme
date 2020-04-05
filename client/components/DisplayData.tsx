@@ -1,22 +1,22 @@
 
 import { useQuery } from '@apollo/client';
-import { ORDERS, } from '../gql'
-
+import { USERS } from '../gql'
 
 
 export const DisplayData = (props: any) => {
   
   if (props.stuff !== 'orders') return <div>We cannot complete your request.</div>
 else {
-  const { loading, error, data } = useQuery(ORDERS);
+  const { loading, error, data } = useQuery(USERS);
+   
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
-    return data.orders.map(({ ship_city, ship_country }) => (
+    return data.users.map(({ username, email }) => (
       <div className="box">
-      <div key={ship_city}>
+      <div key={username + Math.random() * 10}>
         <p>
-          {ship_city}, {ship_country}
+          {username} | {email}
         </p>
       </div>
       </div>

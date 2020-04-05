@@ -2,6 +2,7 @@ import React from 'react'
 import { useToken } from '../components/Store'
 import { useDispatchAuth } from './Store'
 import {set_token} from '../actions'
+import {CurrentUser} from './CurrentUser'
 
 export default () => {
    
@@ -16,6 +17,7 @@ export default () => {
 
 if (token) { return ( <div>
 <div className="box">
+    <CurrentUser/>
 <p className="wrap"> 
  {token}
 </p>

@@ -1,6 +1,6 @@
 const { ApolloServer, gql } = require("apollo-server");
 const ApolloServerLambda = require('apollo-server-lambda').ApolloServer;
-//const {resolver} = require('graphql-sequelize');
+const {resolver} = require('graphql-sequelize');
 const { User } = require('./models')
 const bcrypt = require('bcrypt')
 const jsonwebtoken = require('jsonwebtoken')
@@ -17,7 +17,7 @@ require('dotenv').config()
  }
  type Query {
    me: User
-   users: [User!]
+   users: [User]
   }
  type Mutation {
    signup (username: String!, email: String!, password: String!): String
@@ -27,9 +27,10 @@ require('dotenv').config()
 
 const resolvers = {
   Query: {
-    users: () => users,
+    users: resolver(User,{list: true}),
     // fetch the profile of currently authenticated user
     async me (_, args, { user }) {
+      console.log(user)
       // make sure user is logged in
       if (!user) {
         throw new Error('You are not authenticated!')
@@ -106,21 +107,21 @@ if( process.env.LAMBDA_LOCAL_DEVELOPMENT == "1") {
   const serverLocal = new ApolloServer({ 
     typeDefs, 
     resolvers, 
-  //   context: ({ req }) => {
-  //     console.log('req')
-  //     // get the user token from the headers
-  //     const token = req.headers.authorization || '';
-  //     console.log('token?', token)
-  //     // try to retrieve a user with the token
-  //     const user = getUser(token);
-  //     console.log('user?', user)
-  //     // optionally block the user
-  //     // we could also check user roles/permissions here
-  //     if (!user) throw new AuthenticationError('you must be logged in'); 
+    // context: ({ req }) => {
+    //   console.log('req')
+    //   // get the user token from the headers
+    //   const token = req.headers.authorization || '';
+    //   console.log('token?', token)
+    //   // try to retrieve a user with the token
+    //   const user = getUser(token);
+    //   console.log('user?', user)
+    //   // optionally block the user
+    //   // we could also check user roles/permissions here
+    //   if (!user) throw new AuthenticationError('you must be logged in'); 
      
-  //     // add the user to the context
-  //     return { user };
-  //    },
+    //   // add the user to the context
+    //   return { user };
+    // },
   
    });
 
