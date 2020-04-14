@@ -36,6 +36,8 @@
  - https://stackoverflow.com/questions/34120548/using-bcrypt-with-sequelize-model
  - https://medium.com/@leonyapkl/how-to-make-graphql-schema-and-sequelize-fields-works-together-dont-repeat-yourself-dry-18fbfc5b5aac
 
+ https://www.apollographql.com/docs/apollo-server/security/authentication/
+
 
 ### Koa.js
 
@@ -63,9 +65,11 @@ https://overreacted.io/a-complete-guide-to-useeffect/
 https://www.apollographql.com/docs/react/data/mutations/
 https://dev.to/ricardo93borges/learning-graphql-by-building-a-chat-application-part-2-1b7g
 https://github.com/ricardo93borges/graphql-chat-client
+https://github.com/weihanchen/react-apollo-graphql-jwt-koa
+https://www.richardkotze.com/coding/send-jwt-client-apollo-graphql
+https://www.richardkotze.com/coding/json-web-tokens-using-apollo-graphql
 
+https://www.apollographql.com/docs/tutorial/mutations/
 
-
-
-
-
+https://blog.apollographql.com/whats-next-js-for-apollo-e4dfe835d070
+https://medium.com/@garganurag893/next-js-apollo-graphql-client-setup-a55e9f692a72

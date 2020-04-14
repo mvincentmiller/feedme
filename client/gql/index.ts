@@ -18,11 +18,19 @@ export const ME = gql`
     }
   }
 `
+// export const CREATE_USER = gql`
+// mutation {
+//   signup(username: "bob", email: "bob@bob.com", password: "password")
+// }
+// `
+
 export const CREATE_USER = gql`
-mutation {
-  signup(username: "bob", email: "bob@bob.com", password: "password")
-}
+  mutation signup($username: String!, $email: String!, $password: String!) {
+    signup(username: $username, email: $email, password: $password)
+  }
 `
+
+
 
 export const LOGIN = gql`
   mutation login($email: String!, $password: String!) {

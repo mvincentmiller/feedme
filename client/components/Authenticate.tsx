@@ -16,13 +16,19 @@ export default () => {
 
   let email
   let password
-  const [login, { data }] = useMutation(LOGIN)
+  const [login, { data, error }] = useMutation(LOGIN)
 
   if (data) {
     set_token(auth_dispatch, data.login)
     localStorage.setItem('slinky', data.login)
     console.log(data.login)
+  } 
+
+  if (error) {
+    console.log(error)
   }
+
+  
 
   const clear = async () => {
     localStorage.setItem('slinky', '')

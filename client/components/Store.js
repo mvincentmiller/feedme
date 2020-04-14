@@ -1,12 +1,14 @@
 import React, { useReducer, useContext } from 'react'
-import fetch from 'node-fetch';
+import fetch from 'cross-fetch';
 import { ApolloClient, HttpLink, createHttpLink, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { setContext } from "apollo-link-context";
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({
-    uri: 'http://localhost:4000', fetch
+    uri: 'http://localhost:4000', 
+    fetch,
+    //headers: {      authorization: localStorage.getItem('slinky')    }, 
   })
 });
 

@@ -1,109 +1,75 @@
-const { ApolloServer, gql } = require("apollo-server");
-const ApolloServerLambda = require('apollo-server-lambda').ApolloServer;
-const {resolver} = require('graphql-sequelize');
-const { User } = require('./models')
-const bcrypt = require('bcrypt')
-const jsonwebtoken = require('jsonwebtoken')
+import  { ApolloServer, gql } from 'apollo-server';
+// import Koa from 'koa'
+// import cors from '@koa/cors'
+// import bodyParser from 'koa-bodyparser';
+// import { ApolloServer, gql } from 'apollo-server-koa';
 require('dotenv').config()
+import {typeDefs, resolvers } from './gql.js'
 
+// const server = new ApolloServerLambda({
+//   typeDefs,
+//   resolvers,
+//   context: ({ event, context }) => ({
+//       headers: event.headers,
+//       functionName: context.functionName,
+//       event,
+//       context,
+//   }),
+// });
 
-
- // Define our schema using the GraphQL schema language
- const typeDefs = `
- type User {
-   id: Int!
-   username: String!
-   email: String!
- }
- type Query {
-   me: User
-   users: [User]
-  }
- type Mutation {
-   signup (username: String!, email: String!, password: String!): String
-   login (email: String!, password: String!): String
- }
-`
-
-const resolvers = {
-  Query: {
-    users: resolver(User,{list: true}),
-    // fetch the profile of currently authenticated user
-    async me (_, args, { user }) {
-      console.log(user)
-      // make sure user is logged in
-      if (!user) {
-        throw new Error('You are not authenticated!')
-      }
-
-      // user is authenticated
-      return await User.findById(user.id)
-    }
-  },
-
-  Mutation: {
-    // Handle user signup
-    async signup (_, { username, email, password }) {
-      const user = await User.create({
-        username,
-        email,
-        password: await bcrypt.hash(password, 10)
-      })
-
-      // return json web token
-      return jsonwebtoken.sign(
-        { id: user.id, email: user.email },
-        process.env.JWT_SECRET,
-        { expiresIn: '1y' }
-      )
-    },
-
-    // Handles user login
-    async login (_, { email, password }) {
-      const user = await User.findOne({ where: { email } })
-
-      if (!user) {
-        throw new Error('No user with that email')
-      }
-
-      const valid = await bcrypt.compare(password, user.password)
-
-      if (!valid) {
-        throw new Error('Incorrect password')
-      }
-
-      // return json web token
-      return jsonwebtoken.sign(
-        { id: user.id, email: user.email },
-        process.env.JWT_SECRET,
-        { expiresIn: '1d' }
-      )
-    }
-  }
-}
-
-
-const server = new ApolloServerLambda({
-  typeDefs,
-  resolvers,
-  context: ({ event, context }) => ({
-      headers: event.headers,
-      functionName: context.functionName,
-      event,
-      context,
-  }),
-});
-
-exports.handler = server.createHandler({
-  cors: {
-      origin: '*',
-      credentials: true,
-      allowedHeaders: 'Content-Type, Authorization'
-  },
-});
+// exports.handler = server.createHandler({
+//   cors: {
+//       origin: '*',
+//       credentials: true,
+//       allowedHeaders: 'Content-Type, Authorization'
+//   },
+// });
 
 // For local development
 if( process.env.LAMBDA_LOCAL_DEVELOPMENT == "1") {
+
+  // const server = new ApolloServer({ typeDefs, resolvers,
+
+  //   // context: ({ ctx }) => {
+  //   //   // Note! This example uses the `req` object to access headers,
+  //   //   // but the arguments received by `context` vary by integration.
+  //   //   // This means they will vary for Express, Koa, Lambda, etc.!
+  //   //   //
+  //   //   // To find out the correct arguments for a specific integration,
+  //   //   // see the `context` option in the API reference for `apollo-server`:
+  //   //   // https://www.apollographql.com/docs/apollo-server/api/apollo-server/
+   
+  //   //   // Get the user token from the headers.
+  //   //   const token = ctx.headers.authorization || '';
+   
+  //   //   // try to retrieve a user with the token
+  //   //   const user = getUser(token);
+   
+  //   //   // add the user to the context
+  //   //   return { user };
+  //   // }
+  // });
+
+  // const app = new Koa();
+
+  // app.use(cors());
+  // app.use(bodyParser());
+  // server.applyMiddleware({ app });
+  // // alternatively you can get a composed middleware from the apollo server
+  // // app.use(server.getMiddleware());
+  
+  // app.use(async (ctx, next) => {
+  //   // the parsed body will store in ctx.request.body
+  //   // if nothing was parsed, body will be an empty object {}
+  //   //ctx.body = ctx.request.body;
+  //   // console.log(ctx.body)
+  //  await next()
+  // });
+
+  // app.listen({ port: 4000 }, () =>
+  //   console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`),
+  // );
+
   const serverLocal = new ApolloServer({ 
     typeDefs, 
     resolvers, 
@@ -128,4 +94,5 @@ if( process.env.LAMBDA_LOCAL_DEVELOPMENT == "1") {
   serverLocal.listen().then(({ url }) => {
       console.log(`🚀 Server ready at ${url}`);
   });
+
 }

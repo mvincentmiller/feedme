@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node index.js",
-    "dev": "LAMBDA_LOCAL_DEVELOPMENT=1 yarn start"
+    "dev": "LAMBDA_LOCAL_DEVELOPMENT=1 npx nodemon . --exec babel-node"
   },
   "dependencies": {
     "apollo-server": "^2.11.0",
@@ -24,6 +24,10 @@
     "sequelize": "^5.21.5"
   },
   "devDependencies": {
+    "@babel/core": "^7.8.6",
+    "@babel/node": "^7.8.7",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.8.6",
     "nodemon": "^2.0.2"
   }
 }
